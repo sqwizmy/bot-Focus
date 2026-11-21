@@ -1,0 +1,13 @@
+import telebot
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+
+bot = telebot.TeleBot("9123500193:AAHro_UE41_ZTw5ommAhCqR_7AznNo1pQt8")
+
+@bot.message_handler(commands=['start'])
+def send_welcome(message):
+    text = "Привет! Я трекер привычек от FocusOnMe. Напиши название привычки — и я всё запишу! 🎯\n\nНажимай на кнопку «Открыть» и становись лучше сегодня 💪"
+    keyboard = InlineKeyboardMarkup()
+    keyboard.add(InlineKeyboardButton("Открыть", url="https://t.me/FocusOnMe"))
+    bot.send_message(message.chat.id, text, reply_markup=keyboard)
+
+bot.infinity_polling()
